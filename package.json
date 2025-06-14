@@ -1,0 +1,31 @@
+{
+  "name": "saga-parser",
+  "version": "1.0.0",
+  "description": "Parser for ancient Icelandic sagas HTML files to structured JSON",
+  "main": "src/index.js",
+  "bin": {
+    "saga-parser": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": ["saga", "parser", "html", "json", "icelandic"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.54.0",
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
