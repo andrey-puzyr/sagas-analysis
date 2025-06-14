@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saga Parser - Парсер исландских саг</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏔️ Saga Parser</h1>
+            <p>Парсер для древних исландских саг из HTML в структурированный JSON</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="file-input-wrapper">
+                    <input type="file" id="fileInput" accept=".html,.htm" />
+                    <label for="fileInput" class="file-input-label">
+                        <span class="file-icon">📄</span>
+                        <span class="file-text">Выберите HTML файл саги</span>
+                    </label>
+                </div>
+                <button id="parseButton" class="parse-btn" disabled>Парсить сагу</button>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Результат парсинга</h2>
+                    <button id="downloadButton" class="download-btn">Скачать JSON</button>
+                </div>
+                <div class="json-output" id="jsonOutput"></div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-message" id="errorMessage"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Создано для анализа древних исландских саг</p>
+        </footer>
+    </div>
+
+    <script src="sagaParser.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
