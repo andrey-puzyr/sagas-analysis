@@ -3,7 +3,7 @@ from .base import LanguageModule, NumeralMatch
 
 
 class OldNorseModule(LanguageModule):
-    """Модуль для поиска древнеисландских числительных (0-100)."""
+    """Модуль для поиска древнеисландских числительных (0-1000)."""
     
     NUMERALS: dict[str, int] = {
         # 0 (редко, но для полноты)
@@ -69,6 +69,8 @@ class OldNorseModule(LanguageModule):
         # 100
         "hundrað": 100, "hundraði": 100, "hundraðs": 100,
         "tírætt": 100, "tíræðr": 100,
+        # 1000
+        "þúsund": 1000, "þúsundir": 1000, "þúsunda": 1000,
         
         # Порядковые числительные
         # 1-й

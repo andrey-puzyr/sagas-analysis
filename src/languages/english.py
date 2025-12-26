@@ -3,7 +3,7 @@ from .base import LanguageModule, NumeralMatch
 
 
 class EnglishModule(LanguageModule):
-    """Модуль для поиска английских числительных (0-100)."""
+    """Модуль для поиска английских числительных (0-1000)."""
     
     NUMERALS: dict[str, int] = {
         # 0
@@ -17,7 +17,9 @@ class EnglishModule(LanguageModule):
         # Десятки
         "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50,
         "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90,
+        # Сотни
         "hundred": 100,
+        "thousand": 1000,
         # Порядковые
         "first": 1, "second": 2, "third": 3, "fourth": 4, "fifth": 5,
         "sixth": 6, "seventh": 7, "eighth": 8, "ninth": 9, "tenth": 10,
@@ -25,7 +27,7 @@ class EnglishModule(LanguageModule):
         "fifteenth": 15, "sixteenth": 16, "seventeenth": 17, "eighteenth": 18,
         "nineteenth": 19, "twentieth": 20, "thirtieth": 30, "fortieth": 40,
         "fiftieth": 50, "sixtieth": 60, "seventieth": 70, "eightieth": 80,
-        "ninetieth": 90, "hundredth": 100,
+        "ninetieth": 90, "hundredth": 100, "thousandth": 1000,
     }
     
     def __init__(self) -> None:
