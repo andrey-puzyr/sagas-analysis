@@ -33,6 +33,7 @@ def split_sentences(text: str) -> list[tuple[int, int, str]]:
 def extract_context(text: str, match_start: int, match_end: int) -> str:
     """
     Извлечь контекст: предложение до, предложение с вхождением, предложение после.
+    Найденное слово выделяется маркерами **.
     
     Args:
         text: Полный текст параграфа
@@ -40,14 +41,20 @@ def extract_context(text: str, match_start: int, match_end: int) -> str:
         match_end: Конечная позиция найденного числительного
         
     Returns:
-        Строка с 3 предложениями (или меньше, если на краю текста)
+        Строка с 3 предложениями и выделенным словом
     """
-    sentences = split_sentences(text)
+    # Вставляем маркеры вокруг найденного слова
+    highlighted_text = text[:match_start] + "**" + text[match_start:match_end] + "**" + text[match_end:]
+    
+    # Корректируем позиции для поиска предложения (маркеры добавили 2 символа перед match_end)
+    adjusted_start = match_start
+    
+    sentences = split_sentences(highlighted_text)
     
     # Найти индекс предложения, содержащего вхождение
     target_idx = None
     for i, (start, end, _) in enumerate(sentences):
-        if start <= match_start < end:
+        if start <= adjusted_start < end:
             target_idx = i
             break
     

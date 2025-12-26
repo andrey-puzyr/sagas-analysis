@@ -42,7 +42,7 @@ class TestExtractContext:
         
         # Assert
         assert "Before." in context
-        assert "Target word here." in context
+        assert "**word**" in context
         assert "After." in context
 
     def test_extracts_context_at_beginning(self) -> None:
@@ -53,19 +53,19 @@ class TestExtractContext:
         context = extract_context(text, 20, 26)
         
         # Assert - нет предложения до, только текущее и следующее
-        assert "First sentence with target." in context
+        assert "**target**" in context
         assert "Second." in context
 
     def test_extracts_context_at_end(self) -> None:
         # Setup
         text = "First. Second. Third sentence with target."
         
-        # Act - "target" на позиции 36
-        context = extract_context(text, 36, 42)
+        # Act - "target" начинается на позиции 35
+        context = extract_context(text, 35, 41)
         
         # Assert - нет предложения после, только предыдущее и текущее
         assert "Second." in context
-        assert "Third sentence with target." in context
+        assert "**target**" in context
 
     def test_single_sentence_text(self) -> None:
         # Setup
@@ -75,7 +75,17 @@ class TestExtractContext:
         context = extract_context(text, 5, 8)
         
         # Assert
-        assert context == "Only one sentence here."
+        assert "Only **one** sentence here." in context
+
+    def test_highlights_match_with_markers(self) -> None:
+        # Setup
+        text = "There were twelve men."
+        
+        # Act
+        context = extract_context(text, 11, 17)
+        
+        # Assert
+        assert "**twelve**" in context
 
     @pytest.mark.parametrize("match_pos,expected_sentences", [
         (0, 2),   # начало - текущее + следующее
