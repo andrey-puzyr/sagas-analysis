@@ -18,6 +18,7 @@ class NumeralResult:
     chapter: int
     saga: str
     lang: str
+    url: str
 
 
 def process_file(filepath: str) -> list[NumeralResult]:
@@ -29,6 +30,8 @@ def process_file(filepath: str) -> list[NumeralResult]:
     results = []
     
     for chapter in saga.chapters:
+        url = f"https://sagadb.org/files/html/{saga.basename}.html#{chapter.number}"
+        
         for paragraph in chapter.paragraphs:
             matches = module.find_numerals(paragraph)
             
@@ -45,7 +48,8 @@ def process_file(filepath: str) -> list[NumeralResult]:
                     context=context,
                     chapter=chapter.number,
                     saga=saga.basename,
-                    lang=module.language_code
+                    lang=module.language_code,
+                    url=url
                 ))
     
     return results
@@ -66,16 +70,17 @@ def main() -> None:
     
     # Вывод CSV в консоль
     writer = csv.writer(sys.stdout, delimiter=';')
-    writer.writerow(['number_word', 'number', 'context', 'chapter', 'saga', 'lang'])
+    writer.writerow(['number_word', 'number', 'context', 'chapter', 'saga', 'lang', 'url'])
     
     for result in all_results:
         writer.writerow([
-            result.number_word,
+            result.number_word.lower(),
             result.number,
             result.context,
             result.chapter,
             result.saga,
-            result.lang
+            result.lang,
+            result.url
         ])
 
 
